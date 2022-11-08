@@ -1,0 +1,33 @@
+<div class="agm-container text-center">
+  <hr>
+  <h3 style="color: hotpink">User Selected Area </h3>
+  <br/>
+
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let point of selectedLandArea.coordinates" style="color : hotpink">
+      Latitude : {{point.lat}} ,
+      Longitude : {{point.lng}}
+      </mat-list-item
+    >
+  </mat-list>
+  <mat-list role="list">
+    <mat-list-item role="listitem"  style="color : hotpink">
+     Selected Area : {{ selectedLandArea.selectedArea }}
+      </mat-list-item
+    >
+  </mat-list>
+</div>
+<hr>
+
+<div class="container text-center">
+  <h1 style="color: hotpink">Click Buy Land to Purchase!</h1>
+</div>
+
+<div class="container text-center">
+  <section>
+    <div class="example-button-row" style="color : hotpink; justify-content: center; margin: 20px;">
+      <button type="submit" mat-raised-button color="primary" (click)="buyLand()">Buy Land</button>
+    </div>
+  </section>
+</div>
+

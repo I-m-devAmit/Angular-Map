@@ -1,0 +1,32 @@
+<div class="agm-container">
+  <h3>Angular Google Maps Example</h3>
+  <agm-map
+    [zoom]="5"
+    [latitude]="lat"
+    [longitude]="lng"
+    (mapReady)="onMapReady($event)"
+  >
+  </agm-map>
+  <br />
+  <div *ngIf="pointList.length>0" class="display-flex">
+    <button mat-stroked-button color="warn" (click)="deleteSelectedShape()">Clear</button>
+  </div>
+
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let point of pointList">
+      {{ point.lat.toPrecision(5) }},
+      {{ point.lng.toPrecision(5) }}</mat-list-item
+    >
+  </mat-list>
+  <mat-card *ngIf="selectedArea > 0">
+    <span> Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup> </span>
+  </mat-card>
+<div>
+<section>
+  <div class="example-button-row" style="display:flex; justify-content: center; margin: 20px ; ">
+    <button type="submit" mat-raised-button color="primary" (click)="buyLand()">Buy Land</button>
+  </div> 
+</section>
+</div>
+<!-- <app-land-purchase [mapArea]= "landSelection"></app-land-purchase> -->
+</div>
