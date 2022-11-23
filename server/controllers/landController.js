@@ -1,8 +1,11 @@
 const Cart = require('../models/Cart');
 // const jwt = require("jsonwebtoken");
+const JWT_SECRET= "ecommercewebapi"
+
 
 const landArea = async (req,res) => {
   const owner = req.user._id;
+  console.log("Owner: ", owner);
   const dataExist = await Cart.findOne({ userID: owner});
   if(dataExist){
     Cart.findOne(owner).exec(function(err,book) {

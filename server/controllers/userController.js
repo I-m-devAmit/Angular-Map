@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const jwt = require("jsonwebtoken");
-const { request } = require('express');
+
+
+const JWT_SECRET= "ecommercewebapi"
 
 const userLogin = async ( req, res) => {
         try {
@@ -8,7 +10,9 @@ const userLogin = async ( req, res) => {
             const userlogin = await User.findOne({ email: email });
             if (userlogin) {
               const ismatch = await (password, userlogin.password);
-              const token =jwt.sign({ _id: userlogin._id.toString() }, process.env.JWT_SECRET);
+              console.log("Process env : " , JWT_SECRET);
+              const token =jwt.sign({ _id: userlogin._id.toString() }, JWT_SECRET);
+              console.log("Token 1: " , token);
               if (!ismatch) {
                 res.status(400).json({ 
                     success: false,
@@ -27,13 +31,15 @@ const userLogin = async ( req, res) => {
                const user = new User({
                ...req.body 
                })
-               const newUser = await user.save()
-               const token =jwt.sign({ _id: newUser._id.toString() }, process.env.JWT_SECRET)
+               const newUser = await user.save();
+               console.log("newuser: " , newUser);
+               const token =jwt.sign({ _id: newUser._id.toString() }, JWT_SECRET)
+               console.log("Token 2 : " , token);
                res.status(200).json({
                 success  : true,
                 message: "Login Successfully",
                 data: {
-                    user: userlogin,
+                    user: newUser,
                     token: token
                 }
                })

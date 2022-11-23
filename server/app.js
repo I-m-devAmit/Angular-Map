@@ -10,7 +10,7 @@ const cartRouter = require('./routers/cart');
 require("./db/mongoose");
 
 
-const port = process.env.PORT || 2000; //PORT NUMBER
+const port = 2000; //PORT NUMBER
 app.use(cors());    
 app.use(express.json());
 app.use(userRouter);
